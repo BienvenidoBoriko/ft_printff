@@ -6,14 +6,14 @@
 #    By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/17 16:57:26 by bboriko-          #+#    #+#              #
-#    Updated: 2021/04/18 12:39:12 by bboriko-         ###   ########.fr        #
+#    Updated: 2021/04/25 19:23:42 by bboriko-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 LIBFT = ./src/libft/libft.a
 
-SRCS			=	ft_printf.c
+SRCS			=	ft_printf.c ./src/treet_printf_formaters/treet_printf_formaters.c ./src/treet_printf_formaters/treet_printf_formaters2.c
 
 HEADER			= -I ./include
 OBJS			= $(SRCS:.c=.o)
@@ -21,7 +21,7 @@ OBJS_LIBFT		= ./src/libft/*.o
 
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror
+#CFLAGS			= -Wall -Wextra -Werror
 
 NAME			= libft_printf.a
 $(NAME):	$(OBJS)
