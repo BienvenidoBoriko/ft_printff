@@ -6,7 +6,7 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 15:02:14 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/04/25 19:02:18 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/01 21:46:26 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,48 +126,49 @@ int	set_precision_flag(char *fm, t_pf_formaters *pf_fters)
 
 int	set_width_flag_aux(char *format, t_pf_formaters *pf_fters)
 {
-	int	cont3;
-	int	setet;
+	char	*result;
 
-	cont3 = 0;
-	setet = 0;
-	while (format[cont3] && setet == 0)
-	{
-		if (cont3 > 0 && format[cont3] == '*' && format[cont3 - 1] != '.')
-		{
-			free(pf_fters->width);
-			pf_fters->width = ft_strdup("*");
-			setet = 1;
-		}
-		cont3++;
-	}
+	result = ft_strrchr(format, "*");
+	if (!result || *(result--) == '.')
+		return (-1);
+	free(pf_fters->width);
+	pf_fters->width = ft_strdup("*");
 	ft_putstr_fd("\n", 1);
-	//ft_putstr_fd(formatter, 1);
-	ft_putnbr_fd(setet, 1);
+	ft_putstr_fd("si", 1);
+	//ft_putnbr_fd(setet, 1);
 	ft_putstr_fd("\n", 1);
-	return (setet);
+	return (1);
 }
 
-int	set_width_flag(char *format, t_pf_formaters *pf_fters)
+int	set_width_flag(char *fm, t_pf_formaters *pf_fters)
 {
 	int	cont;
 	int	cont2;
+	int	parar;
 
 	cont = 0;
-	if (!set_width_flag_aux(format, pf_fters))
+	parar = 0;
+	if ((set_width_flag_aux(fm, pf_fters)) == -1)
 	{
-		while (!(format[cont] >= 49 && format[cont] <= 57) && format[cont])
+		while (fm[cont] && !ft_isdigit(fm[cont]) && fm[cont - 1] != '.'
+			&& !ft_isdigit(fm[cont - 1]))
 			cont++;
 		cont2 = cont;
-		while ((format[cont2] >= 48 && format[cont2] <= 57) && format[cont2])
+		while ((fm[cont2] >= 48 && fm[cont2] <= 57) && fm[cont2])
 			cont2++;
 	}
 	else
-		return (1);
+	{
+		ft_putstr_fd("\n", 1);
+	ft_putstr_fd("si2", 1);
+	//ft_putnbr_fd(setet, 1);
+	ft_putstr_fd("\n", 1);
+	return (1);
+	}
 	if (cont2 > 0)
 	{
 		free(pf_fters->width);
-		pf_fters->width = ft_substr(format, cont, cont2 - cont + 1);
+		pf_fters->width = ft_substr(fm, cont, cont2 - cont + 1);
 		return (cont2 - cont);
 	}
 	else

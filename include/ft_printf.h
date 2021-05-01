@@ -6,7 +6,7 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 18:17:06 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/04/25 12:09:57 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:49:39 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int				set_flags(char *formatter, t_pf_formaters *pf_fters);
 int				set_precision_flag(char *fm, t_pf_formaters *pf_fters);
 int				set_width_flag(char *format, t_pf_formaters *pf_fters);
 int				ft_format(char *fm, t_pf_formaters *pf_fters, int count);
+int				set_specifier(char *formatter, t_pf_formaters *pf_fters);
+int				set_length(char *fmt, t_pf_formaters *pf_fters);
 t_pf_formaters	*init_t_pf_formaters(t_pf_formaters	*printf_formaters);
 
 #endif
