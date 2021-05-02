@@ -6,11 +6,31 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:57:52 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/05/01 20:15:15 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/02 21:03:14 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/ft_printf.h"
+
+int	ft_process(t_pf_formaters *pf_fters, va_list *args)
+{
+	ft_putstr_fd("\n width = ", 1);
+	ft_putstr_fd(pf_fters->width, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n precision = ", 1);
+	ft_putstr_fd(pf_fters->precision, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n specifier = ", 1);
+	ft_putchar_fd(pf_fters->specifier, 1);
+	ft_putstr_fd("\n", 1);
+	/*ft_putstr_fd("\n", 1);
+	ft_putstr_fd(pf_fters->width, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd(pf_fters->width, 1);
+	ft_putstr_fd("\n", 1);*/
+	return (1);
+}
 
 char	*get_formats(char *fm, t_pf_formaters *pf_fters, int count)
 {
@@ -39,52 +59,60 @@ char	*get_formats(char *fm, t_pf_formaters *pf_fters, int count)
 
 int	ft_format(char *fm, t_pf_formaters *pf_fters, int count)
 {
-	int		legth;
+	int		len;
 	char	*formatter;
 	int		r_setlen;
 
-	legth = 0;
+	len = 0;
 	formatter = get_formats(fm, pf_fters, count);
-	if (!set_specifier(formatter, pf_fters))
+	if (set_flags(formatter, pf_fters) == -1)
 		return (-1);
-	else
-		legth++;
-	legth += set_flags(formatter, pf_fters);
-	r_setlen = set_length(formatter, pf_fters);
-	if (r_setlen == -1)
-		return (1);
-	else
-		legth += r_setlen;
+	if (set_width(formatter, pf_fters) == -1)
+		return (-1);
+	if (set_precision(formatter, pf_fters) == -1)
+		return (-1);
+	if (set_length(formatter, pf_fters) == -1)
+		return (-1);
+	if (set_specifier(formatter, pf_fters) == -1)
+		return (-1);
 	free(formatter);
-	return (legth);
+	return (ft_strlen(formatter));
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf_aux(char *format, va_list	*args)
 {
-	va_list				args;
-	char				*str;
-	int					count;
+	int					result;
 	t_pf_formaters		printf_formaters;
+	int					count;
+	int					len;
 
 	count = 0;
-	if (!format)
-		return (-1);
-	va_start(args, format);
+	len = 0;
 	while (format[count])
 	{
 		if (format[count] == '%')
 		{
 			init_t_pf_formaters(&printf_formaters);
-			str = va_arg(args, char *);
-			count += ft_format((char *)format, &printf_formaters, count);
-			//ft_putstr_fd("\n", 1);
-			//ft_putnbr_fd(count, 1);
-			//ft_putstr_fd(str, 1);
-			//ft_putstr_fd("\n", 1);
+			result = ft_format((char *)format, &printf_formaters, count);
+			if (result != -1)
+			{
+				count += result;
+				len += ft_process(&printf_formaters, args);
+			}
 		}
-		//else
-			//ft_putchar_fd(format[count], 1);
+		else
+			ft_putchar_fd(format[count], 1);
 		count++;
 	}
-	return (count + printf_formaters.count_chars);
+	return (len + count);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list				args;
+
+	if (!format)
+		return (-1);
+	va_start(args, format);
+	return (ft_printf_aux((char *)format, &args));
 }

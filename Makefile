@@ -6,7 +6,7 @@
 #    By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/17 16:57:26 by bboriko-          #+#    #+#              #
-#    Updated: 2021/04/25 19:23:42 by bboriko-         ###   ########.fr        #
+#    Updated: 2021/05/02 21:36:12 by bboriko-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC				= gcc
 RM				= rm -f
 #CFLAGS			= -Wall -Wextra -Werror
 
-NAME			= libft_printf.a
+NAME			= libftprintf.a
 $(NAME):	$(OBJS)
 			@echo "\ncompilando libft"
 			@make -C ./src/libft bonus
