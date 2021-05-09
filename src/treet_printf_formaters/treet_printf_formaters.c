@@ -6,7 +6,7 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 15:02:14 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/05/02 18:43:29 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/09 20:19:48 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_flags(char *fm, int c)
 	while (fm[c])
 	{
 		if (fm[c] == '-' || fm[c] == '+' || fm[c] == '#' || fm[c] == ' '
-			|| (fm[c] == '0' && !ft_isdigit(fm[c - 1])))
+			|| (fm[c] == '0' && !ft_isdigit(fm[c - 1]) && fm[c - 1] != '.'))
 			return (-1);
 		c++;
 	}

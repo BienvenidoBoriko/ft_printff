@@ -6,13 +6,13 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:57:52 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/05/02 21:03:14 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/09 20:29:01 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/ft_printf.h"
 
-int	ft_process(t_pf_formaters *pf_fters, va_list *args)
+static int	ft_process(t_pf_formaters *pf_fters, va_list *args)
 {
 	ft_putstr_fd("\n width = ", 1);
 	ft_putstr_fd(pf_fters->width, 1);
@@ -23,6 +23,34 @@ int	ft_process(t_pf_formaters *pf_fters, va_list *args)
 	ft_putstr_fd("\n specifier = ", 1);
 	ft_putchar_fd(pf_fters->specifier, 1);
 	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n left_justify = ", 1);
+	ft_putnbr_fd(pf_fters->left_justify, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n sign = ", 1);
+	ft_putnbr_fd(pf_fters->sign, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n left_pads = ", 1);
+	ft_putnbr_fd(pf_fters->left_pads, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n no_name = ", 1);
+	ft_putnbr_fd(pf_fters->no_name, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n space = ", 1);
+	ft_putnbr_fd(pf_fters->space, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n length = ", 1);
+	ft_putstr_fd(pf_fters->length, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n specifiers = ", 1);
+	ft_putstr_fd(pf_fters->specifiers, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n lengths = ", 1);
+	ft_putstr_fd(pf_fters->lengths, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n c_chars = ", 1);
+	ft_putnbr_fd(pf_fters->c_chars, 1);
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\nh------------------------------------------------\n", 1);
 	/*ft_putstr_fd("\n", 1);
 	ft_putstr_fd(pf_fters->width, 1);
 	ft_putstr_fd("\n", 1);
@@ -100,8 +128,8 @@ int	ft_printf_aux(char *format, va_list	*args)
 				len += ft_process(&printf_formaters, args);
 			}
 		}
-		else
-			ft_putchar_fd(format[count], 1);
+		//else
+			//ft_putchar_fd(format[count], 1);
 		count++;
 	}
 	return (len + count);

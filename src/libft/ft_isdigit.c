@@ -6,7 +6,7 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:08:06 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/04/17 21:03:41 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/09 19:58:34 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	ft_isdigit(int arg)
 {
 	if (arg >= 48 && arg <= 57)
 	{
-		return (arg);
+		return (1);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: bboriko- <bboriko-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 15:04:51 by bboriko-          #+#    #+#             */
-/*   Updated: 2021/05/02 21:52:38 by bboriko-         ###   ########.fr       */
+/*   Updated: 2021/05/09 20:12:09 by bboriko-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,5 @@ int	set_precision(char *fm, t_pf_formaters *pf_fters)
 	else
 		return (0);
 	cont2 = cont;
-	ft_putstr_fd("\n noooo \n", 1);
 	return (set_precision_aux(fm, pf_fters, cont, cont2));
 }
